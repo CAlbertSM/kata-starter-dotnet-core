@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Kata
 {
@@ -12,12 +13,7 @@ namespace Kata
                 return 0;
             }
 
-            if (numbers.Contains(','))
-            {
-                var aNumbers = numbers.Split(',');
-                return Int32.Parse(aNumbers[0]) + Int32.Parse(aNumbers[1]);
-            }
-            return Int32.Parse(numbers);
+            return numbers.Split(",").Select(int.Parse).Sum();
         }
     }
 }
