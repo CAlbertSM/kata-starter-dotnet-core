@@ -14,6 +14,7 @@ namespace Kata
             }
 
             var separator = new[]{",","\n"};
+            var exceptionMessage = "negatives not allowed: ";
             
             if (numbers.Contains("//"))
             {
@@ -23,7 +24,18 @@ namespace Kata
                 numbers = parts[1];
             }
 
-            return numbers.Split(separator, StringSplitOptions.None).Select(int.Parse).Sum();
+            return numbers.Split(separator, StringSplitOptions.None).Select((number) =>
+            {
+                if (Int32.Parse(number) < 0)
+                {
+                    exceptionMessage += number;
+                    throw new Exception(exceptionMessage);
+                }
+                else
+                {
+                    return Int32.Parse(number);
+                }
+            }).Sum();
         }
     }
 }
